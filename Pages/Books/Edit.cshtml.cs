@@ -30,12 +30,14 @@ namespace Buliga_Rares_Lab2.Pages.Books
                 return NotFound();
             }
 
-            var book =  await _context.Book.FirstOrDefaultAsync(m => m.ID == id);
+            var book =  await _context.Book.FirstOrDefaultAsync(m => m.Id == id);
             if (book == null)
             {
                 return NotFound();
             }
             Book = book;
+            ViewData["AuthorID"] = new SelectList(_context.Set<Publisher>(), "ID",
+"FirstName");
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID",
 "PublisherName");
             return Page();
@@ -58,7 +60,7 @@ namespace Buliga_Rares_Lab2.Pages.Books
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookExists(Book.ID))
+                if (!BookExists(Book.Id))
                 {
                     return NotFound();
                 }
@@ -73,7 +75,7 @@ namespace Buliga_Rares_Lab2.Pages.Books
 
         private bool BookExists(int id)
         {
-          return _context.Book.Any(e => e.ID == id);
+          return _context.Book.Any(e => e.Id == id);
         }
     }
 }

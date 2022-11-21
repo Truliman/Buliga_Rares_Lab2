@@ -25,9 +25,7 @@ namespace Buliga_Rares_Lab2.Pages.Books
         {
             if (_context.Book != null)
             {
-                Book = await _context.Book
-                    .Include(b => b.Publisher)
-                    .ToListAsync();
+                Book = await _context.Book.Include(b => b.Publisher).Include(b=>b.Author).ToListAsync();
             }
         }
     }
