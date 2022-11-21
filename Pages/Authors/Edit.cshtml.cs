@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Buliga_Rares_Lab2.Data;
 using Buliga_Rares_Lab2.Models;
 
-namespace Buliga_Rares_Lab2.Pages
+namespace Buliga_Rares_Lab2.Pages.Authors
 {
     public class EditModel : PageModel
     {
@@ -21,21 +21,21 @@ namespace Buliga_Rares_Lab2.Pages
         }
 
         [BindProperty]
-        public Publisher Publisher { get; set; } = default!;
+        public Author Author { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Publisher == null)
+            if (id == null || _context.Author == null)
             {
                 return NotFound();
             }
 
-            var publisher =  await _context.Publisher.FirstOrDefaultAsync(m => m.ID == id);
-            if (publisher == null)
+            var author =  await _context.Author.FirstOrDefaultAsync(m => m.Id == id);
+            if (author == null)
             {
                 return NotFound();
             }
-            Publisher = publisher;
+            Author = author;
             return Page();
         }
 
@@ -48,7 +48,7 @@ namespace Buliga_Rares_Lab2.Pages
                 return Page();
             }
 
-            _context.Attach(Publisher).State = EntityState.Modified;
+            _context.Attach(Author).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace Buliga_Rares_Lab2.Pages
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PublisherExists(Publisher.ID))
+                if (!AuthorExists(Author.Id))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace Buliga_Rares_Lab2.Pages
             return RedirectToPage("./Index");
         }
 
-        private bool PublisherExists(int id)
+        private bool AuthorExists(int id)
         {
-          return _context.Publisher.Any(e => e.ID == id);
+          return _context.Author.Any(e => e.Id == id);
         }
     }
 }

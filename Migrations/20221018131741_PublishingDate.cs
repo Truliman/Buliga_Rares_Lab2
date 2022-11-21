@@ -9,6 +9,11 @@ namespace Buliga_Rares_Lab2.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.RenameColumn(
+                name: "Name",
+                table: "Book",
+                newName: "Title");
+
             migrationBuilder.AlterColumn<decimal>(
                 name: "Price",
                 table: "Book",
@@ -30,6 +35,11 @@ namespace Buliga_Rares_Lab2.Migrations
             migrationBuilder.DropColumn(
                 name: "PublishingDate",
                 table: "Book");
+
+            migrationBuilder.RenameColumn(
+                name: "Title",
+                table: "Book",
+                newName: "Name");
 
             migrationBuilder.AlterColumn<decimal>(
                 name: "Price",

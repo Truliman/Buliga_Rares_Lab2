@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Buliga_Rares_Lab2.Data;
 using Buliga_Rares_Lab2.Models;
 
-namespace Buliga_Rares_Lab2.Pages.Publishers
+namespace Buliga_Rares_Lab2.Pages.Categories
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace Buliga_Rares_Lab2.Pages.Publishers
         }
 
         [BindProperty]
-        public Publisher Publisher { get; set; }
+        public Category Category { get; set; }
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
@@ -36,7 +36,7 @@ namespace Buliga_Rares_Lab2.Pages.Publishers
                 return Page();
             }
 
-            _context.Publisher.Add(Publisher);
+            _context.Category.Add(Category);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

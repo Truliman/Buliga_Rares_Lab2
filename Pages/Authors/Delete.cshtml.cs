@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Buliga_Rares_Lab2.Data;
 using Buliga_Rares_Lab2.Models;
 
-namespace Buliga_Rares_Lab2.Pages
+namespace Buliga_Rares_Lab2.Pages.Authors
 {
     public class DeleteModel : PageModel
     {
@@ -20,40 +20,40 @@ namespace Buliga_Rares_Lab2.Pages
         }
 
         [BindProperty]
-      public Publisher Publisher { get; set; }
+      public Author Author { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Publisher == null)
+            if (id == null || _context.Author == null)
             {
                 return NotFound();
             }
 
-            var publisher = await _context.Publisher.FirstOrDefaultAsync(m => m.ID == id);
+            var author = await _context.Author.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (publisher == null)
+            if (author == null)
             {
                 return NotFound();
             }
             else 
             {
-                Publisher = publisher;
+                Author = author;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Publisher == null)
+            if (id == null || _context.Author == null)
             {
                 return NotFound();
             }
-            var publisher = await _context.Publisher.FindAsync(id);
+            var author = await _context.Author.FindAsync(id);
 
-            if (publisher != null)
+            if (author != null)
             {
-                Publisher = publisher;
-                _context.Publisher.Remove(Publisher);
+                Author = author;
+                _context.Author.Remove(Author);
                 await _context.SaveChangesAsync();
             }
 

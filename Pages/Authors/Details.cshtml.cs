@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Buliga_Rares_Lab2.Data;
 using Buliga_Rares_Lab2.Models;
 
-namespace Buliga_Rares_Lab2.Pages
+namespace Buliga_Rares_Lab2.Pages.Authors
 {
     public class DetailsModel : PageModel
     {
@@ -19,23 +19,23 @@ namespace Buliga_Rares_Lab2.Pages
             _context = context;
         }
 
-      public Publisher Publisher { get; set; }
+      public Author Author { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Publisher == null)
+            if (id == null || _context.Author == null)
             {
                 return NotFound();
             }
 
-            var publisher = await _context.Publisher.FirstOrDefaultAsync(m => m.ID == id);
-            if (publisher == null)
+            var author = await _context.Author.FirstOrDefaultAsync(m => m.Id == id);
+            if (author == null)
             {
                 return NotFound();
             }
             else 
             {
-                Publisher = publisher;
+                Author = author;
             }
             return Page();
         }
