@@ -21,10 +21,6 @@ namespace Buliga_Rares_Lab2.Pages.Publishers
 
         public IActionResult OnGet()
         {
-
-            ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID",
-"PublisherName");
-
             return Page();
         }
 
